@@ -13,6 +13,9 @@ class Snake:
         self.head = self.parts[0]
         self.direction = DIRECTIONS["up"]
 
+    def change_direction(self, new_direction):
+        self.direction = new_direction
+
     def move(self):
         for i in range(len(self.parts) - 1, 0, -1):
             self.parts[i].x = self.parts[i - 1].x
@@ -20,12 +23,9 @@ class Snake:
         self.head.x += self.direction[0]
         self.head.y += self.direction[1]
 
-    def print(self):
-        for part in self.parts:
-            print(part.x)
+    def append_part(self):
+        xi = self.parts[len(self.parts) - 1].x
+        yi = self.parts[len(self.parts) - 1].y
+        self.parts.append(Part(xi, yi))
 
-
-sn = Snake()
-sn.move()
-sn.move()
-sn.print()
+# TODO: sprawdzić, czy na następnym polu jakie będzie jest jedzenie, jeśli tak - append_part i move, inaczej razie tylko move
