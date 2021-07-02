@@ -2,7 +2,7 @@
 Classic snake game written with python and pygame
 
 ## How to run?
-To run this program you'll have to run snake.py file
+To run this program you'll have to run snakepy.py file
 
 ## Controls
 
