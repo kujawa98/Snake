@@ -1,13 +1,14 @@
 from snake import Snake
 from setup import *
 from drawer import draw_snake
+from collision_checker import check_collision
 
 
 def main():
     snk = Snake()
     run = True
     clock = pygame.time.Clock()
-    while run:
+    while run and not check_collision(snk):
         clock.tick(10)
         draw_snake(snk)
         snk.move()

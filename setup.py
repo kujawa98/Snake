@@ -20,3 +20,4 @@ BLACK = (0, 0, 0)
 # others
 FPS = 60
 PART_WIDTH, PART_HEIGHT = 20, 20
+PARTS_ON_START = 3
