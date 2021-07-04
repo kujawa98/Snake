@@ -1,4 +1,4 @@
-from setup import DIRECTIONS
+from setup import *
 
 
 class Part:
@@ -9,7 +9,7 @@ class Part:
 
 class Snake:
     def __init__(self):
-        self.parts = [Part(4, j) for j in range(4, 7)]
+        self.parts = [Part(BOARD_WIDTH // 2, j) for j in range(BOARD_WIDTH // 2, BOARD_WIDTH // 2 + 3)]
         self.head = self.parts[0]
         self.direction = DIRECTIONS["up"]
 
