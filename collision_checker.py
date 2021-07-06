@@ -1,5 +1,9 @@
+from setup import BOARD_WIDTH, BOARD_HEIGHT
+
+
 def check_collision(snake):
-    if snake.head.x < 0 or snake.head.x >= 17 or snake.head.y < 0 or snake.head.y >= 17:
+    if snake.head.x + snake.direction[0] < 0 or snake.head.x + snake.direction[0] >= BOARD_WIDTH or snake.head.y + \
+            snake.direction[1] < 0 or snake.head.y + snake.direction[1] >= BOARD_HEIGHT:
         return True
     for part in snake.parts:
         if part != snake.head and part.x == snake.head.x and part.y == snake.head.y:
