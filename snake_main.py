@@ -13,8 +13,10 @@ def fspots(snk):
 
 
 def resolve_spots(snk, free_spots):
-    free_spots[BOARD_WIDTH * snk.head.x - 1 + snk.head.y - 1][2] = False
-    free_spots[BOARD_WIDTH * snk.tail.x - 1 + snk.tail.y - 1][2] = True
+    index = BOARD_WIDTH * snk.head.x + snk.head.y
+    if index < BOARD_WIDTH * BOARD_HEIGHT:
+        free_spots[BOARD_WIDTH * snk.head.x + snk.head.y][2] = False
+        free_spots[BOARD_WIDTH * snk.tail.x + snk.tail.y][2] = True
 
 
 def main():
