@@ -1,7 +1,7 @@
 from snake import Snake
 from setup import *
 from drawer import draw_snake
-from collision_checker import check_collision
+from collision_checker import *
 from food_generator import generate_food
 
 
@@ -22,16 +22,15 @@ def main():
     run = True
     free_spots = fspots(snk)
     food = generate_food(free_spots)
-    foods = True
     clock = pygame.time.Clock()
     while run and not check_collision(snk):
-        clock.tick(15)
-        if not foods:
+        clock.tick(10)
+        if food_collision(snk, food):
+            snk.append_part()
             food = generate_food(free_spots)
-            foods = False
-        draw_snake(snk, food)
         snk.move()
         resolve_spots(snk, free_spots)
+        draw_snake(snk, food)
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 run = False
