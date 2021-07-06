@@ -36,13 +36,17 @@ def main():
                 run = False
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_UP:
-                    snk.change_direction(DIRECTIONS["up"])
+                    if snk.direction != DIRECTIONS["down"]:
+                        snk.change_direction(DIRECTIONS["up"])
                 if event.key == pygame.K_DOWN:
-                    snk.change_direction(DIRECTIONS["down"])
+                    if snk.direction != DIRECTIONS["up"]:
+                        snk.change_direction(DIRECTIONS["down"])
                 if event.key == pygame.K_LEFT:
-                    snk.change_direction(DIRECTIONS["left"])
+                    if snk.direction != DIRECTIONS["right"]:
+                        snk.change_direction(DIRECTIONS["left"])
                 if event.key == pygame.K_RIGHT:
-                    snk.change_direction(DIRECTIONS["right"])
+                    if snk.direction != DIRECTIONS["left"]:
+                        snk.change_direction(DIRECTIONS["right"])
         pygame.display.update()
 
 
