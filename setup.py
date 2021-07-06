@@ -1,13 +1,17 @@
 import pygame
 
 DIRECTIONS = {"up": (0, -1), "down": (0, 1), "left": (-1, 0), "right": (1, 0)}
-BOARD_WIDTH = BOARD_HEIGHT = 17
-
+BOARD_WIDTH = 17
+BOARD_HEIGHT = 20
+# TODO: rozmiar okna w którym wyświetla się snek 544x640, okno wewnętrzne większe nwm jakieś 1000x1000
 # screen setup
 pygame.init()
 
 # window properties
-WINDOW_WIDTH, WINDOW_HEIGHT = 340, 340
+WINDOW_WIDTH, WINDOW_HEIGHT = 1000, 1000
+INNER_WIDTH, INNER_HEIGHT = 544, 640
+OFFSET_X = (WINDOW_WIDTH - INNER_WIDTH) // 2
+OFFSET_Y = (WINDOW_HEIGHT - INNER_HEIGHT) // 2
 window = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))
 pygame.display.set_caption('Snek')
 
@@ -19,5 +23,5 @@ BLACK = (0, 0, 0)
 
 # others
 FPS = 60
-PART_WIDTH, PART_HEIGHT = 20, 20
+PART_WIDTH, PART_HEIGHT = 32, 32
 PARTS_ON_START = 3
