@@ -26,3 +26,4 @@ PART_WIDTH, PART_HEIGHT = 32, 32
 PARTS_ON_START = 3
 IMG = pygame.image.load("assets/snek.png")
 BGC = pygame.image.load("assets/bcg.png")
+APPLE = pygame.image.load("assets/apple.png")
