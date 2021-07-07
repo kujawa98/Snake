@@ -6,7 +6,7 @@ from food_generator import generate_food
 
 
 def fspots(snk):
-    free_spots = [[i, j, True] for i in range(BOARD_WIDTH) for j in range(BOARD_HEIGHT)]
+    free_spots = [[i, j, True] for i in range(1,BOARD_WIDTH) for j in range(1,BOARD_HEIGHT)]
     for part in snk.parts:
         free_spots[BOARD_WIDTH * part.x - 1 + part.y - 1][2] = False
     return free_spots
