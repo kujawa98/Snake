@@ -1,13 +1,18 @@
 from setup import *
-import pygame
 
 
-def draw_snake(snake, food):
+def draw_snake(snake):
     window.fill(BLACK)
-    window.blit(BGC, (0, 0))
-    window.blit(IMG, (OFFSET_X, OFFSET_Y))
-    window.blit(APPLE, (food[0] * PART_WIDTH + OFFSET_X,
-                        food[1] * PART_HEIGHT + OFFSET_Y))
-    for part in snake.parts:
-        pygame.draw.rect(window, BLACK,
-                         (part.x * PART_WIDTH + OFFSET_X, part.y * PART_HEIGHT + OFFSET_Y, PART_WIDTH, PART_HEIGHT))
+    for i in range(len(snake.parts) - 1, 0, -1):
+        if snake.parts[i].direction != snake.parts[i - 1].direction:
+            pygame.draw.line(window, WHITE, (snake.parts[i].x * PART_WIDTH, snake.parts[i].y * PART_HEIGHT),
+                             (snake.parts[i - 1].x * PART_WIDTH + snake.parts[i].direction[0] // VELOCITY * (
+                                     PART_WIDTH // 2 - 1),
+                              snake.parts[i - 1].y * PART_HEIGHT + snake.parts[i].direction[1] // VELOCITY * (
+                                      PART_HEIGHT // 2 - 1)),
+                             PART_WIDTH)
+        else:
+            pygame.draw.line(window, WHITE, (snake.parts[i].x * PART_WIDTH, snake.parts[i].y * PART_HEIGHT),
+                             (snake.parts[i - 1].x * PART_WIDTH - snake.parts[i].direction[0] // VELOCITY,
+                              snake.parts[i - 1].y * PART_HEIGHT - snake.parts[i].direction[1] // VELOCITY), PART_WIDTH)
+    pygame.display.flip()

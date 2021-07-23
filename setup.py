@@ -1,6 +1,7 @@
 import pygame
 
-DIRECTIONS = {"up": (0, -0.5), "down": (0, 0.5), "left": (-0.5, 0), "right": (0.5, 0)}
+VELOCITY = 0.5
+DIRECTIONS = {"up": (0, -VELOCITY), "down": (0, VELOCITY), "left": (-VELOCITY, 0), "right": (VELOCITY, 0)}
 BOARD_WIDTH = 17
 BOARD_HEIGHT = 20
 
@@ -8,7 +9,7 @@ BOARD_HEIGHT = 20
 pygame.init()
 
 # window properties
-WINDOW_WIDTH, WINDOW_HEIGHT = 1024, 1024
+WINDOW_WIDTH, WINDOW_HEIGHT = 340, 400
 INNER_WIDTH, INNER_HEIGHT = 544, 640
 OFFSET_X = (WINDOW_WIDTH - INNER_WIDTH) // 2
 OFFSET_Y = (WINDOW_HEIGHT - INNER_HEIGHT) // 2
@@ -22,8 +23,5 @@ BLACK = (0, 0, 0)
 
 # others
 FPS = 60
-PART_WIDTH, PART_HEIGHT = 32, 32
+PART_WIDTH, PART_HEIGHT = 20, 20
 PARTS_ON_START = 3
-# IMG = pygame.image.load("assets/snek.png")
-# BGC = pygame.image.load("assets/bcg.png")
-# APPLE = pygame.image.load("assets/apple.png")
