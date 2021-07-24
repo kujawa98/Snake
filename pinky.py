@@ -1,11 +1,11 @@
 import pygame
 
 from setup import *
-from collision_checker import *
 
 from event_handler import EventHandler
 from snake import Snake
 from food import Food
+from collision_handler import CollisionHandler
 
 
 class SnakeGame:
@@ -16,6 +16,7 @@ class SnakeGame:
 
         self.snake = Snake()
         self.food = Food(self.snake)
+        self.collision_handler = CollisionHandler(self.snake)
 
         self.clock = pygame.time.Clock()
         self.event_handler = EventHandler(self)
@@ -26,10 +27,10 @@ class SnakeGame:
         food = self.food.generate_food()
         while self.is_running:
             self.clock.tick(10)
-            if food_collision(self.snake, food):
+            if self.collision_handler.food_collision(food):
                 self.snake.append_part()
                 food = self.food.generate_food()
-            if check_collision(self.snake):
+            if self.collision_handler.check_collision():
                 self.is_running = False
             self.food.resolve_spots(self.snake)
             self.snake.move()
