@@ -9,9 +9,7 @@ def draw_snake(snake, food):
                      (food[0] * PART_WIDTH,
                       food[1] * PART_HEIGHT, PART_WIDTH, PART_HEIGHT), 0, 16)
     for part in snake.parts:
-        color = "#FC766AFF" if part == snake.head else (150, 150, 150)
-        pygame.draw.rect(window, color,
-                         (part.x * PART_WIDTH, part.y * PART_HEIGHT, PART_WIDTH, PART_HEIGHT))
+        part.draw()
 
 
 def draw_chessboard():

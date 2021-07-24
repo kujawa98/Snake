@@ -2,15 +2,22 @@ from setup import *
 
 
 class Part:
-    def __init__(self, x, y):
+    def __init__(self, x, y, color):
         self.x = x
         self.y = y
+        self.color = color
+        self.rect = pygame.Rect(self.x * PART_WIDTH, self.y * PART_HEIGHT, PART_WIDTH, PART_HEIGHT)
+
+    def draw(self):
+        pygame.draw.rect(window, self.color, (self.x * PART_WIDTH, self.y * PART_HEIGHT, PART_WIDTH, PART_HEIGHT))
 
 
 class Snake:
     def __init__(self):
-        self.parts = [Part(BOARD_WIDTH // 2, j) for j in range(BOARD_WIDTH // 2, BOARD_WIDTH // 2 + PARTS_ON_START)]
+        self.parts = [Part(BOARD_WIDTH // 2, j, (150, 150, 150)) for j in
+                      range(BOARD_WIDTH // 2, BOARD_WIDTH // 2 + PARTS_ON_START)]
         self.head = self.parts[0]
+        self.head.color = "#FC766AFF"
         self.tail = self.parts[len(self.parts) - 1]
         self.direction = DIRECTIONS["up"]
 
@@ -27,7 +34,5 @@ class Snake:
     def append_part(self):
         xi = self.parts[len(self.parts) - 1].x
         yi = self.parts[len(self.parts) - 1].y
-        self.parts.append(Part(xi, yi))
+        self.parts.append(Part(xi, yi, (150, 150, 150)))
         self.tail = self.parts[len(self.parts) - 1]
-
-# TODO: sprawdzić, czy na następnym polu jakie będzie jest jedzenie, jeśli tak - append_part i move, inaczej razie tylko move
