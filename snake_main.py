@@ -1,9 +1,11 @@
+import pygame
+from random import choice
+
+from setup import *
+from collision_checker import *
+
 from event_handler import EventHandler
 from snake import Snake
-from setup import *
-from drawer import draw_snake
-from collision_checker import *
-from food_generator import generate_food
 
 
 def fspots(snk):
@@ -20,8 +22,16 @@ def resolve_spots(snk, free_spots):
         free_spots[BOARD_WIDTH * snk.tail.x + snk.tail.y][2] = True
 
 
+def generate_food(free_spots):
+    filtered = filter(lambda x: x[2] == True, free_spots)
+    return choice(list(filtered))
+
+
 class SnakeGame:
     def __init__(self):
+        pygame.init()
+        self.screen = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))
+        pygame.display.set_caption('Pinky')
         self.snake = Snake()
 
         self.clock = pygame.time.Clock()
@@ -41,9 +51,23 @@ class SnakeGame:
                 self.is_running = False
             self.snake.move()
             resolve_spots(self.snake, free_spots)
-            draw_snake(self.snake, food)
             self.event_handler.handle_events()
-            pygame.display.update()
+            self.update_screen(food)
+
+    def update_screen(self, food):
+        self.screen.fill("#FC766AFF")
+        for i in range(BOARD_WIDTH):
+            for j in range(BOARD_HEIGHT):
+                pygame.draw.rect(self.screen, "#5B84B1FF",
+                                 (i * PART_WIDTH, j * PART_HEIGHT, PART_WIDTH, PART_HEIGHT))
+                pygame.draw.rect(self.screen, "#FC766AFF",
+                                 (i * PART_WIDTH, j * PART_HEIGHT, PART_WIDTH, PART_HEIGHT), 1, 25)
+        pygame.draw.rect(self.screen, "#FC766AFF",
+                         (food[0] * PART_WIDTH,
+                          food[1] * PART_HEIGHT, PART_WIDTH, PART_HEIGHT), 0, 16)
+        for part in self.snake.parts:
+            part.draw(self.screen)
+        pygame.display.update()
 
 
 if __name__ == '__main__':

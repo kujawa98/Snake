@@ -1,3 +1,4 @@
+import pygame
 from setup import *
 
 
@@ -8,7 +9,7 @@ class Part:
         self.color = color
         self.rect = pygame.Rect(self.x * PART_WIDTH, self.y * PART_HEIGHT, PART_WIDTH, PART_HEIGHT)
 
-    def draw(self):
+    def draw(self, window):
         pygame.draw.rect(window, self.color, (self.x * PART_WIDTH, self.y * PART_HEIGHT, PART_WIDTH, PART_HEIGHT))
 
 
