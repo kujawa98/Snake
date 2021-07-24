@@ -8,10 +8,7 @@ BOARD_HEIGHT = 20
 pygame.init()
 
 # window properties
-WINDOW_WIDTH, WINDOW_HEIGHT = 1024, 1024
-INNER_WIDTH, INNER_HEIGHT = 544, 640
-OFFSET_X = (WINDOW_WIDTH - INNER_WIDTH) // 2
-OFFSET_Y = (WINDOW_HEIGHT - INNER_HEIGHT) // 2
+WINDOW_WIDTH, WINDOW_HEIGHT = 544, 640
 window = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))
 pygame.display.set_caption('Snek')
 
@@ -23,4 +20,3 @@ BLACK = (0, 0, 0)
 FPS = 60
 PART_WIDTH, PART_HEIGHT = 32, 32
 PARTS_ON_START = 3
-APPLE = pygame.image.load("assets/apple.png")
