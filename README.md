@@ -1,8 +1,18 @@
-# SnakePy v1
-Classic snake game written with python and pygame
+# Pinky
+Classic snake game with unusual colors
 
 ## How to run?
-To run this program you'll have to run snake_main.py file
+You must have pygame installed on your system
+
+```
+python -m pip install --user pygame
+```
+Then, to run this program type
+```
+python pinky.py
+```
+
+in your python interpreter
 
 ## Controls
 For changing snake's direction press key arrow
