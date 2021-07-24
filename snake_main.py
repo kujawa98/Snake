@@ -30,11 +30,13 @@ class SnakeGame:
     def run(self):
         free_spots = fspots(self.snake)
         food = generate_food(free_spots)
-        while self.is_running and not check_collision(self.snake):
+        while self.is_running:
             self.clock.tick(10)
             if food_collision(self.snake, food):
                 self.snake.append_part()
                 food = generate_food(free_spots)
+            if check_collision(self.snake):
+                self.is_running = False
             self.snake.move()
             resolve_spots(self.snake, free_spots)
             draw_snake(self.snake, food)
