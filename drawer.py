@@ -5,8 +5,9 @@ import pygame
 def draw_snake(snake, food):
     window.fill("#FC766AFF")
     draw_chessboard()
-    window.blit(APPLE, (food[0] * PART_WIDTH + OFFSET_X,
-                        food[1] * PART_HEIGHT + OFFSET_Y))
+    pygame.draw.rect(window, "#FC766AFF",
+                     (food[0] * PART_WIDTH + OFFSET_X,
+                      food[1] * PART_HEIGHT + OFFSET_Y, PART_WIDTH, PART_HEIGHT), 0, 16)
     for part in snake.parts:
         color = "#FC766AFF" if part == snake.head else (150, 150, 150)
         pygame.draw.rect(window, color,
