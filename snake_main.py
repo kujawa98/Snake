@@ -1,3 +1,4 @@
+from event_handler import EventHandler
 from snake import Snake
 from setup import *
 from drawer import draw_snake
@@ -24,6 +25,7 @@ class SnakeGame:
         self.snake = Snake()
 
         self.clock = pygame.time.Clock()
+        self.event_handler = EventHandler(self)
 
         self.is_running = True
 
@@ -40,22 +42,7 @@ class SnakeGame:
             self.snake.move()
             resolve_spots(self.snake, free_spots)
             draw_snake(self.snake, food)
-            for event in pygame.event.get():
-                if event.type == pygame.QUIT:
-                    self.is_running = False
-                if event.type == pygame.KEYDOWN:
-                    if event.key == pygame.K_UP:
-                        if self.snake.direction != DIRECTIONS["down"]:
-                            self.snake.change_direction(DIRECTIONS["up"])
-                    if event.key == pygame.K_DOWN:
-                        if self.snake.direction != DIRECTIONS["up"]:
-                            self.snake.change_direction(DIRECTIONS["down"])
-                    if event.key == pygame.K_LEFT:
-                        if self.snake.direction != DIRECTIONS["right"]:
-                            self.snake.change_direction(DIRECTIONS["left"])
-                    if event.key == pygame.K_RIGHT:
-                        if self.snake.direction != DIRECTIONS["left"]:
-                            self.snake.change_direction(DIRECTIONS["right"])
+            self.event_handler.handle_events()
             pygame.display.update()
 
 
