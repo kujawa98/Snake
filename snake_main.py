@@ -19,38 +19,44 @@ def resolve_spots(snk, free_spots):
         free_spots[BOARD_WIDTH * snk.tail.x + snk.tail.y][2] = True
 
 
-def main():
-    snk = Snake()
-    run = True
-    free_spots = fspots(snk)
-    food = generate_food(free_spots)
-    clock = pygame.time.Clock()
-    while run and not check_collision(snk):
-        clock.tick(10)
-        if food_collision(snk, food):
-            snk.append_part()
-            food = generate_food(free_spots)
-        snk.move()
-        resolve_spots(snk, free_spots)
-        draw_snake(snk, food)
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                run = False
-            if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_UP:
-                    if snk.direction != DIRECTIONS["down"]:
-                        snk.change_direction(DIRECTIONS["up"])
-                if event.key == pygame.K_DOWN:
-                    if snk.direction != DIRECTIONS["up"]:
-                        snk.change_direction(DIRECTIONS["down"])
-                if event.key == pygame.K_LEFT:
-                    if snk.direction != DIRECTIONS["right"]:
-                        snk.change_direction(DIRECTIONS["left"])
-                if event.key == pygame.K_RIGHT:
-                    if snk.direction != DIRECTIONS["left"]:
-                        snk.change_direction(DIRECTIONS["right"])
-        pygame.display.update()
+class SnakeGame:
+    def __init__(self):
+        self.snake = Snake()
+
+        self.clock = pygame.time.Clock()
+
+        self.is_running = True
+
+    def run(self):
+        free_spots = fspots(self.snake)
+        food = generate_food(free_spots)
+        while self.is_running and not check_collision(self.snake):
+            self.clock.tick(10)
+            if food_collision(self.snake, food):
+                self.snake.append_part()
+                food = generate_food(free_spots)
+            self.snake.move()
+            resolve_spots(self.snake, free_spots)
+            draw_snake(self.snake, food)
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    self.is_running = False
+                if event.type == pygame.KEYDOWN:
+                    if event.key == pygame.K_UP:
+                        if self.snake.direction != DIRECTIONS["down"]:
+                            self.snake.change_direction(DIRECTIONS["up"])
+                    if event.key == pygame.K_DOWN:
+                        if self.snake.direction != DIRECTIONS["up"]:
+                            self.snake.change_direction(DIRECTIONS["down"])
+                    if event.key == pygame.K_LEFT:
+                        if self.snake.direction != DIRECTIONS["right"]:
+                            self.snake.change_direction(DIRECTIONS["left"])
+                    if event.key == pygame.K_RIGHT:
+                        if self.snake.direction != DIRECTIONS["left"]:
+                            self.snake.change_direction(DIRECTIONS["right"])
+            pygame.display.update()
 
 
 if __name__ == '__main__':
-    main()
+    snk_game = SnakeGame()
+    snk_game.run()
