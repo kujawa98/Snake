@@ -16,7 +16,6 @@ window = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))
 pygame.display.set_caption('Snek')
 
 # colors
-RED = (255, 0, 0)
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
 
@@ -24,6 +23,4 @@ BLACK = (0, 0, 0)
 FPS = 60
 PART_WIDTH, PART_HEIGHT = 32, 32
 PARTS_ON_START = 3
-IMG = pygame.image.load("assets/snek.png")
-BGC = pygame.image.load("assets/bcg.png")
 APPLE = pygame.image.load("assets/apple.png")
