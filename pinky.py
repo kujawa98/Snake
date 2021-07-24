@@ -1,5 +1,3 @@
-import pygame
-
 from setup import *
 
 from event_handler import EventHandler
@@ -11,7 +9,7 @@ from collision_handler import CollisionHandler
 class SnakeGame:
     def __init__(self):
         pygame.init()
-        self.screen = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))
+        self.screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
         pygame.display.set_caption('Pinky')
 
         self.snake = Snake()
@@ -39,15 +37,19 @@ class SnakeGame:
 
     def update_screen(self, food):
         self.screen.fill("#FC766AFF")
+        for i in range(13):
+            for j in range(8):
+                self.screen.blit(BG_IMG, (150 * i, 150 * j))
         for i in range(BOARD_WIDTH):
             for j in range(BOARD_HEIGHT):
                 pygame.draw.rect(self.screen, "#5B84B1FF",
-                                 (i * PART_WIDTH, j * PART_HEIGHT, PART_WIDTH, PART_HEIGHT))
+                                 (i * PART_WIDTH + OFFSET_X, j * PART_HEIGHT + OFFSET_Y, PART_WIDTH, PART_HEIGHT))
                 pygame.draw.rect(self.screen, "#FC766AFF",
-                                 (i * PART_WIDTH, j * PART_HEIGHT, PART_WIDTH, PART_HEIGHT), 1, 25)
+                                 (i * PART_WIDTH + OFFSET_X, j * PART_HEIGHT + OFFSET_Y, PART_WIDTH, PART_HEIGHT), 1,
+                                 25)
         pygame.draw.rect(self.screen, "#FC766AFF",
-                         (food[0] * PART_WIDTH,
-                          food[1] * PART_HEIGHT, PART_WIDTH, PART_HEIGHT), 0, 16)
+                         (food[0] * PART_WIDTH + OFFSET_X,
+                          food[1] * PART_HEIGHT + OFFSET_Y, PART_WIDTH, PART_HEIGHT), 0, 16)
         for part in self.snake.parts:
             part.draw(self.screen)
         pygame.display.update()
