@@ -7,9 +7,11 @@ def main():
     snk = Snake()
     run = True
     clock = pygame.time.Clock()
+    pause = False
     while run:
-        clock.tick(25)
-        snk.move()
+        clock.tick(60)
+        if not pause:
+            snk.move()
         draw_snake(snk)
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -27,6 +29,10 @@ def main():
                 if event.key == pygame.K_RIGHT:
                     if snk.head.direction != DIRECTIONS["left"]:
                         snk.change_direction(DIRECTIONS["right"])
+                if event.key == pygame.K_SPACE:
+                    pause = True if not pause else False
+                if event.key == pygame.K_n:
+                    snk.move()
         pygame.display.update()
 
 
