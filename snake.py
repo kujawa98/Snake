@@ -20,10 +20,8 @@ class Snake:
         if self.direction_changed:
             self.append_anchor_point()
             self.direction_changed = False
-        self.head.x += self.head.direction[0]
-        self.head.y += self.head.direction[1]
-        self.tail.x += self.tail.direction[0]
-        self.tail.y += self.tail.direction[1]
+        self.head.update()
+        self.tail.update()
         if self.tail == self.parts[-2]:
             self.tail = self.parts[-2]
             self.parts.pop()
