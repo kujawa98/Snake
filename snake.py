@@ -11,7 +11,8 @@ class Part:
 
     def draw(self, window):
         pygame.draw.rect(window, self.color,
-                         (self.x * PART_WIDTH + OFFSET_X, self.y * PART_HEIGHT + OFFSET_Y, PART_WIDTH, PART_HEIGHT))
+                         (self.x * PART_WIDTH + OFFSET_X, self.y * PART_HEIGHT + OFFSET_Y, PART_WIDTH, PART_HEIGHT), 1,
+                         8)
 
 
 class Snake:
