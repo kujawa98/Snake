@@ -1,3 +1,4 @@
+import pygame
 from setup import *
 
 from event_handler import EventHandler
@@ -37,9 +38,6 @@ class SnakeGame:
 
     def update_screen(self, food):
         self.screen.fill("#FC766AFF")
-        for i in range(13):
-            for j in range(8):
-                self.screen.blit(BG_IMG, (150 * i, 150 * j))
         for i in range(BOARD_WIDTH):
             for j in range(BOARD_HEIGHT):
                 pygame.draw.rect(self.screen, "#5B84B1FF",
