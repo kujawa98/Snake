@@ -36,22 +36,14 @@ class SnakeGame:
             self.update_screen(food)
 
     def update_screen(self, food):
-        self.screen.fill(BLACK)
         pygame.draw.rect(self.screen, "#5B84B1FF",
-                         (0, 0, WINDOW_WIDTH // 2, WINDOW_HEIGHT))
+                         (0, 0, WINDOW_WIDTH, WINDOW_HEIGHT))
         for j in range(BOARD_HEIGHT):
-            for i in range(BOARD_WIDTH // 2):
+            for i in range(BOARD_WIDTH):
                 pygame.draw.rect(self.screen, "#FC766AFF",
                                  (i * PART_WIDTH, j * PART_HEIGHT, PART_WIDTH, PART_HEIGHT), 1)
-        pygame.draw.rect(self.screen, "#FC766AFF",
-                         (WINDOW_WIDTH // 2, 0, WINDOW_WIDTH // 2, WINDOW_HEIGHT))
-        for j in range(BOARD_HEIGHT):
-            for i in range(BOARD_WIDTH // 2, BOARD_WIDTH):
-                pygame.draw.rect(self.screen, "#5B84B1FF",
-                                 (i * PART_WIDTH, j * PART_HEIGHT, PART_WIDTH, PART_HEIGHT), 1)
-        pygame.draw.rect(self.screen, "#FC766AFF" if food[0] < 8 else "#5B84B1FF",
-                         (food[0] * PART_WIDTH + OFFSET_X,
-                          food[1] * PART_HEIGHT + OFFSET_Y, PART_WIDTH, PART_HEIGHT), 0, 16)
+        pygame.draw.circle(self.screen, "#FC766AFF", (food[0] * PART_WIDTH + OFFSET_X + 16,
+                                                      food[1] * PART_HEIGHT + OFFSET_Y + 16), 16)
         for part in self.snake.parts:
             part.draw(self.screen)
         pygame.display.update()
