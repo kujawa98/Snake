@@ -1,4 +1,4 @@
-VELOCITY = 0.5
+VELOCITY = 1
 DIRECTIONS = {"up": (0, -VELOCITY), "down": (0, VELOCITY), "left": (-VELOCITY, 0), "right": (VELOCITY, 0)}
 BOARD_WIDTH = 17
 BOARD_HEIGHT = 20
