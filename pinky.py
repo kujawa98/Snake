@@ -21,17 +21,23 @@ class SnakeGame:
         self.event_handler = EventHandler(self)
 
         self.is_running = True
+        self.food_generated = False
 
     def run(self):
         food = self.food.generate_food()
         while self.is_running:
             self.clock.tick(10)
-            if self.collision_handler.food_collision(food):
-                self.snake.append_part()
-                food = self.food.generate_food()
             if self.collision_handler.check_collision():
                 self.is_running = False
-            self.snake.move()
+            if self.collision_handler.food_collision(food):
+                self.snake.append_part()
+                self.snake.move()
+                food = self.food.generate_food()
+                self.food_generated = True
+            self.food.resolve_spots(self.snake)
+            if not self.food_generated:
+                self.snake.move()
+            self.food_generated = False
             self.event_handler.handle_events()
             self.update_screen(food)
 
