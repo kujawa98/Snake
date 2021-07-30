@@ -28,6 +28,7 @@ class SnakeGame:
             self.clock.tick(10)
             if self.collision_handler.food_collision(food):
                 self.snake.append_part()
+                self.food.resolve_spots(self.snake)
                 food = self.food.generate_food()
             if self.collision_handler.check_collision():
                 self.is_running = False
