@@ -1,4 +1,6 @@
 import pygame
+
+from Scoreboard import Scoreboard
 from setup import *
 
 from event_handler import EventHandler
@@ -16,9 +18,10 @@ class SnakeGame:
         self.snake = Snake()
         self.food = Food(self.snake)
         self.collision_handler = CollisionHandler(self.snake)
+        self.event_handler = EventHandler(self)
+        self.scoreboard = Scoreboard()
 
         self.clock = pygame.time.Clock()
-        self.event_handler = EventHandler(self)
 
         self.is_running = True
         self.food_generated = False
@@ -32,15 +35,16 @@ class SnakeGame:
             if self.collision_handler.food_collision(food):
                 self.snake.append_part()
                 self.snake.move()
-                self.food.resolve_spots(self.snake)
                 food = self.food.generate_food()
                 self.food_generated = True
+                self.scoreboard.update_score()
             self.food.resolve_spots(self.snake)
             if not self.food_generated:
                 self.snake.move()
             self.food_generated = False
             self.event_handler.handle_events()
             self.update_screen(food)
+        self.scoreboard.save_score()
 
     def update_screen(self, food):
         pygame.draw.rect(self.screen, "#5B84B1FF",
@@ -48,7 +52,7 @@ class SnakeGame:
         for j in range(BOARD_HEIGHT):
             for i in range(BOARD_WIDTH):
                 pygame.draw.rect(self.screen, "#FC766AFF",
-                                 (i * PART_WIDTH+OFFSET_X, j * PART_HEIGHT+OFFSET_Y, PART_WIDTH, PART_HEIGHT), 1)
+                                 (i * PART_WIDTH + OFFSET_X, j * PART_HEIGHT + OFFSET_Y, PART_WIDTH, PART_HEIGHT), 1)
         pygame.draw.circle(self.screen, "#FC766AFF", (food[0] * PART_WIDTH + OFFSET_X + 16,
                                                       food[1] * PART_HEIGHT + OFFSET_Y + 16), 16)
         for part in self.snake.parts:
