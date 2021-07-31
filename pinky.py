@@ -38,8 +38,8 @@ class SnakeGame:
                 food = self.food.generate_food()
                 self.food_generated = True
                 self.scoreboard.update_score()
-            self.food.resolve_spots(self.snake)
             if not self.food_generated:
+                self.food.resolve_spots(self.snake)
                 self.snake.move()
             self.food_generated = False
             self.event_handler.handle_events()
@@ -57,6 +57,11 @@ class SnakeGame:
                                                       food[1] * PART_HEIGHT + OFFSET_Y + 16), 16)
         for part in self.snake.parts:
             part.draw(self.screen)
+        font = pygame.font.SysFont(None, 23)
+        txt = font.render("Current score - " + str(self.scoreboard.current), False, BLACK)
+        txt2 = font.render("Best score - " + str(self.scoreboard.best), False, BLACK)
+        self.screen.blit(txt, (200, 697))
+        self.screen.blit(txt2, (400, 697))
         pygame.display.update()
 
 
