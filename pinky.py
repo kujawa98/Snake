@@ -32,6 +32,7 @@ class SnakeGame:
             if self.collision_handler.food_collision(food):
                 self.snake.append_part()
                 self.snake.move()
+                self.food.resolve_spots(self.snake)
                 food = self.food.generate_food()
                 self.food_generated = True
             self.food.resolve_spots(self.snake)
