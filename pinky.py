@@ -48,7 +48,7 @@ class SnakeGame:
         for j in range(BOARD_HEIGHT):
             for i in range(BOARD_WIDTH):
                 pygame.draw.rect(self.screen, "#FC766AFF",
-                                 (i * PART_WIDTH, j * PART_HEIGHT, PART_WIDTH, PART_HEIGHT), 1)
+                                 (i * PART_WIDTH+OFFSET_X, j * PART_HEIGHT+OFFSET_Y, PART_WIDTH, PART_HEIGHT), 1)
         pygame.draw.circle(self.screen, "#FC766AFF", (food[0] * PART_WIDTH + OFFSET_X + 16,
                                                       food[1] * PART_HEIGHT + OFFSET_Y + 16), 16)
         for part in self.snake.parts:
