@@ -25,13 +25,18 @@ class SnakeGame:
 
         self.is_running = True
         self.food_generated = False
+        self.food_sound = pygame.mixer.Sound('./imgs/food.wav')
+        self.collision_sound = pygame.mixer.Sound('./imgs/collision.wav')
 
     def run(self):
         while self.is_running:
             self.clock.tick(10)
             if self.collision_handler.check_collision():
-                self.is_running = False
+                self.collision_sound.play(2)
+                pygame.time.delay(3 * 206)
+                break
             if self.collision_handler.food_collision(self.food):
+                self.food_sound.play()
                 self.snake.append_part()
                 self.food = self.food_generator.generate_food()
                 self.food_generated = True
@@ -39,10 +44,7 @@ class SnakeGame:
             if not self.food_generated:
                 self.food_generator.free_spots[self.snake.tail.y][self.snake.tail.x] = True
             self.snake.move()
-            try:
-                self.food_generator.free_spots[self.snake.head.y][self.snake.head.x] = False
-            except IndexError:
-                self.is_running = False
+            self.food_generator.free_spots[self.snake.head.y][self.snake.head.x] = False
             self.food_generated = False
             self.event_handler.handle_events()
             self.window.update_screen()
