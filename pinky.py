@@ -25,8 +25,8 @@ class SnakeGame:
 
         self.is_running = True
         self.food_generated = False
-        self.food_sound = pygame.mixer.Sound('./imgs/food.wav')
-        self.collision_sound = pygame.mixer.Sound('./imgs/collision.wav')
+        self.food_sound = pygame.mixer.Sound('sounds/food.wav')
+        self.collision_sound = pygame.mixer.Sound('sounds/collision.wav')
 
     def run(self):
         while self.is_running:
