@@ -39,7 +39,10 @@ class SnakeGame:
             if not self.food_generated:
                 self.food_generator.free_spots[self.snake.tail.y][self.snake.tail.x] = True
             self.snake.move()
-            self.food_generator.free_spots[self.snake.head.y][self.snake.head.x] = False
+            try:
+                self.food_generator.free_spots[self.snake.head.y][self.snake.head.x] = False
+            except IndexError:
+                self.is_running = False
             self.food_generated = False
             self.event_handler.handle_events()
             self.window.update_screen()
