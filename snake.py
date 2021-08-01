@@ -11,8 +11,7 @@ class Part:
 
     def draw(self, window):
         pygame.draw.rect(window, self.color,
-                         (self.x * PART_WIDTH + OFFSET_X, self.y * PART_HEIGHT + OFFSET_Y, PART_WIDTH, PART_HEIGHT), 1,
-                         8)
+                         (self.x * PART_WIDTH + OFFSET_X, self.y * PART_HEIGHT + OFFSET_Y, PART_WIDTH, PART_HEIGHT))
 
 
 class Snake:
@@ -20,6 +19,7 @@ class Snake:
         self.parts = [Part(BOARD_WIDTH // 2, j, WHITE) for j in
                       range(BOARD_WIDTH // 2, BOARD_WIDTH // 2 + PARTS_ON_START)]
         self.head = self.parts[0]
+        self.head.color = "#FC766AFF"
         self.tail = self.parts[len(self.parts) - 1]
         self.direction = DIRECTIONS["up"]
 
