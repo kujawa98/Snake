@@ -15,7 +15,7 @@ class Window:
             for i in range(BOARD_WIDTH):
                 xi = i * PART_WIDTH + OFFSET_X
                 yi = j * PART_HEIGHT + OFFSET_Y
-                pygame.draw.rect(self.screen, "#FC766AFF", (xi, yi, PART_WIDTH, PART_HEIGHT), 1)
+                pygame.draw.rect(self.screen, "#FC766AFF", (xi, yi, PART_WIDTH, PART_HEIGHT), 2)
         xf = self.pnk_game.food[0] * PART_WIDTH + OFFSET_X
         yf = self.pnk_game.food[1] * PART_HEIGHT + OFFSET_Y
         pygame.draw.circle(self.screen, "#FC766AFF", (xf + 16, yf + 16), 16)
