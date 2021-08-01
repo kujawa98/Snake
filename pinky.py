@@ -1,19 +1,17 @@
 import pygame
 
-from setup import *
-
 from event_handler import EventHandler
 from snake import Snake
 from food import FoodGenerator
 from collision_handler import CollisionHandler
 from scoreboard import Scoreboard
+from window import Window
 
 
 class SnakeGame:
     def __init__(self):
         pygame.init()
-        self.screen = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))
-        pygame.display.set_caption('Pinky')
+        self.window = Window(self)
 
         self.snake = Snake()
         self.food_generator = FoodGenerator(self.snake)
@@ -44,27 +42,8 @@ class SnakeGame:
             self.food_generator.free_spots[self.snake.head.y][self.snake.head.x] = False
             self.food_generated = False
             self.event_handler.handle_events()
-            self.update_screen()
+            self.window.update_screen()
         self.scoreboard.save_score()
-
-    def update_screen(self):
-        pygame.draw.rect(self.screen, "#5B84B1FF", (0, 0, WINDOW_WIDTH, WINDOW_HEIGHT))
-        for j in range(BOARD_HEIGHT):
-            for i in range(BOARD_WIDTH):
-                xi = i * PART_WIDTH + OFFSET_X
-                yi = j * PART_HEIGHT + OFFSET_Y
-                pygame.draw.rect(self.screen, "#FC766AFF", (xi, yi, PART_WIDTH, PART_HEIGHT), 1)
-        xf = self.food[0] * PART_WIDTH + OFFSET_X
-        yf = self.food[1] * PART_HEIGHT + OFFSET_Y
-        pygame.draw.circle(self.screen, "#FC766AFF", (xf + 16, yf + 16), 16)
-        for part in self.snake.parts:
-            part.draw(self.screen)
-        font = pygame.font.SysFont(None, 23)
-        txt = font.render("Current score - " + str(self.scoreboard.current), False, BLACK)
-        txt2 = font.render("Best score - " + str(self.scoreboard.best), False, BLACK)
-        self.screen.blit(txt, (200, 697))
-        self.screen.blit(txt2, (400, 697))
-        pygame.display.update()
 
 
 if __name__ == '__main__':
