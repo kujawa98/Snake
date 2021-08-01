@@ -34,7 +34,7 @@ class Snake:
         self.head.y += self.direction[1]
 
     def append_part(self):
-        xi = self.parts[len(self.parts) - 1].x
-        yi = self.parts[len(self.parts) - 1].y
+        xi = self.tail.x
+        yi = self.tail.y
         self.parts.append(Part(xi, yi, WHITE))
-        self.tail = self.parts[len(self.parts) - 1]
+        self.tail = self.parts[-1]

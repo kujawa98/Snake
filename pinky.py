@@ -34,13 +34,13 @@ class SnakeGame:
                 self.is_running = False
             if self.collision_handler.food_collision(food):
                 self.snake.append_part()
-                self.snake.move()
                 food = self.food.generate_food()
                 self.food_generated = True
                 self.scoreboard.update_score()
             if not self.food_generated:
-                self.food.resolve_spots(self.snake)
-                self.snake.move()
+                self.food.free_spots[self.snake.tail.y][self.snake.tail.x] = True
+            self.snake.move()
+            self.food.free_spots[self.snake.head.y][self.snake.head.x] = False
             self.food_generated = False
             self.event_handler.handle_events()
             self.update_screen(food)
