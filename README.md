@@ -14,5 +14,9 @@ python pinky.py
 
 in your python interpreter
 
+If everything went properly, you should see picture like that
+
+![Pinky start](./imgs/pnk.png)
+
 ## Controls
 For changing snake's direction press key arrow
