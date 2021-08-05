@@ -30,7 +30,7 @@ class SnakeGame:
 
     def run(self):
         while self.is_running:
-            self.clock.tick(200)
+            self.clock.tick()
             if self.collision_handler.check_collision():
                 self.collision_sound.play(2)
                 pygame.time.delay(3 * 206)

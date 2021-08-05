@@ -1,4 +1,4 @@
-VELOCITY = 1 / 32  # velocity is given by formula 2^(-n) for natural n
+VELOCITY = 1
 DIRECTIONS = {"up": (0, -VELOCITY), "down": (0, VELOCITY), "left": (-VELOCITY, 0), "right": (VELOCITY, 0)}
 BOARD_WIDTH = 17
 BOARD_HEIGHT = 20
