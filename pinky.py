@@ -30,7 +30,7 @@ class SnakeGame:
 
     def run(self):
         while self.is_running:
-            self.clock.tick(10)
+            self.clock.tick(200)
             if self.collision_handler.check_collision():
                 self.collision_sound.play(2)
                 pygame.time.delay(3 * 206)
@@ -41,10 +41,7 @@ class SnakeGame:
                 self.food = self.food_generator.generate_food()
                 self.food_generated = True
                 self.scoreboard.update_score()
-            if not self.food_generated:
-                self.food_generator.free_spots[self.snake.tail.y][self.snake.tail.x] = True
             self.snake.move()
-            self.food_generator.free_spots[self.snake.head.y][self.snake.head.x] = False
             self.food_generated = False
             self.event_handler.handle_events()
             self.window.update_screen()
