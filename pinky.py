@@ -1,9 +1,9 @@
 import pygame
 
-from event_handler import EventHandler
-from snake import Snake
-from food import FoodGenerator
-from collision_handler import CollisionHandler
+from handlers.event_handler import EventHandler
+from entities.snake import Snake
+from entities.food import FoodGenerator
+from handlers.collision_handler import CollisionHandler
 from scoreboard import Scoreboard
 from window import Window
 
