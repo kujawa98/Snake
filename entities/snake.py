@@ -29,25 +29,22 @@ class Snake:
 
     def change_direction(self, new_direction):
         self.next_directions.append(new_direction)
-        self.anchor_points.append(AnchorPoint(self.head.x, self.head.y, new_direction))
 
     def move(self):
         if self.it == 32:
             self.it = 0
-            self.mov()
+            for i in range(len(self.parts) - 1, 0, -1):
+                self.parts[i].x = self.parts[i - 1].x
+                self.parts[i].y = self.parts[i - 1].y
+            if self.anchor_points and self.tail.x == self.anchor_points[0].x and self.tail.y == self.anchor_points[0].y:
+                self.tail_direction = self.anchor_points.popleft().direction
+            if self.next_directions and float(self.head.x).is_integer() and float(self.head.y).is_integer():
+                self.direction = self.next_directions.popleft()
+                self.anchor_points.append(AnchorPoint(self.head.x, self.head.y, self.direction))
+            self.head.x += self.direction[0]
+            self.head.y += self.direction[1]
         else:
             self.it += 1
-
-    def mov(self):
-        for i in range(len(self.parts) - 1, 0, -1):
-            self.parts[i].x = self.parts[i - 1].x
-            self.parts[i].y = self.parts[i - 1].y
-        if self.anchor_points and self.tail.x == self.anchor_points[0].x and self.tail.y == self.anchor_points[0].y:
-            self.tail_direction = self.anchor_points.popleft().direction
-        if self.next_directions and float(self.head.x).is_integer() and float(self.head.y).is_integer():
-            self.direction = self.next_directions.popleft()
-        self.head.x += self.direction[0]
-        self.head.y += self.direction[1]
 
     def draw(self, window):
         for part in self.parts:
