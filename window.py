@@ -23,6 +23,6 @@ class Window:
         font = pygame.font.SysFont(None, 23)
         txt = font.render("Current score - " + str(self.pnk_game.scoreboard.current), False, BLACK)
         txt2 = font.render("Best score - " + str(self.pnk_game.scoreboard.best), False, BLACK)
-        self.screen.blit(txt, (200, 697))
+        self.screen.blit(txt, (100, 697))
         self.screen.blit(txt2, (400, 697))
         pygame.display.update()
