@@ -1,7 +1,11 @@
+import pygame
+
+
 class Scoreboard:
     def __init__(self):
         self.best = self.read_score()
         self.current = 0
+        self.font = pygame.font.SysFont(None, 23)
 
     def update_score(self):
         self.current += 1
@@ -18,3 +22,9 @@ class Scoreboard:
                 return int(f.read())
         except FileNotFoundError:
             return 0
+
+    def draw(self, window):
+        txt = self.font.render("Current score - " + str(self.current), False, (0, 0, 0))
+        txt2 = self.font.render("Best score - " + str(self.best), False, (0, 0, 0))
+        window.blit(txt, (100, 697))
+        window.blit(txt2, (400, 697))

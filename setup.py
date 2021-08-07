@@ -14,6 +14,6 @@ WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
 
 # others
-FPS = 60
+FPS = 400
 PART_WIDTH, PART_HEIGHT = 32, 32
 PARTS_ON_START = 3 + 1

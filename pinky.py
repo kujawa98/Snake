@@ -7,6 +7,7 @@ from handlers.collision_handler import CollisionHandler
 from scoreboard import Scoreboard
 from window import Window
 
+from setup import FPS
 
 class SnakeGame:
     def __init__(self):
@@ -27,7 +28,7 @@ class SnakeGame:
 
     def run(self):
         while self.is_running:
-            self.clock.tick()
+            self.clock.tick(FPS)
             if self.collision_handler.check_collision():
                 self.collision_sound.play(2)
                 pygame.time.delay(3 * 206)
