@@ -1,4 +1,4 @@
-# Pinky
+# Snake
 Classic snake game with unusual colors
 
 ## Technologies
